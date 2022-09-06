@@ -1,4 +1,5 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
+import { RequestB } from 'src/middleware/authCheck';
 
 const joi = require('joi');
 
@@ -19,7 +20,7 @@ const joi = require('joi');
  * @description joi validation product
  */
 
-export const productValidation = (req: Request, res: Response, next: NextFunction) => {
+export const productValidation = (req: RequestB, res: Response, next: NextFunction) => {
   const productSchema = joi.object({
     heading: joi.string().required().label('Heading'),
     title: joi.string().required().label('Product Title'),

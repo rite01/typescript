@@ -1,6 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
 import joi from 'joi';
 import passwordComplexity from 'joi-password-complexity';
+import { RequestB } from 'src/middleware/authCheck';
 
 /**
  *
@@ -11,7 +12,7 @@ import passwordComplexity from 'joi-password-complexity';
  * @description joi validation function
  */
 
-export const userValidation = (req: Request, res: Response, next: NextFunction): any => {
+export const userValidation = (req: RequestB, res: Response, next: NextFunction): any => {
   const schema = joi.object({
     fullName: joi.string().required().label('Full Name'),
     email: joi.string().required().label('Email'),

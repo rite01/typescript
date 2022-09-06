@@ -1,4 +1,5 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
+import { RequestB } from 'src/middleware/authCheck';
 import { HttpMessageCode, HttpMessage } from '../constants';
 import { User } from '../model';
 import { sendMail } from '../service/emailsend';
@@ -13,7 +14,7 @@ import { sendMail } from '../service/emailsend';
  * @access public
  * @discription educator Registration
  */
-export const educatorRegisterHandler = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
+export const educatorRegisterHandler = async (req: RequestB, res: Response, _: NextFunction): Promise<any> => {
   try {
     const { email, fullName, password } = req.body;
     const user = await User.findOne({ email });
@@ -50,7 +51,7 @@ export const educatorRegisterHandler = async (req: Request, res: Response, _: Ne
  * @discription Educator token verification controller.
  */
 
-export const educatorLoginHandler = async (req: Request, res: Response, _: NextFunction): Promise<object> => {
+export const educatorLoginHandler = async (req: RequestB, res: Response, _: NextFunction): Promise<object> => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });

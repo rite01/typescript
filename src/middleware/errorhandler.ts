@@ -1,6 +1,7 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
 import { Error } from 'mongoose';
 import { HttpMessageCode, HttpMessage } from '../constants';
+import { RequestB } from './authCheck';
 
 export class ApiError {
   message: string;
@@ -12,7 +13,7 @@ export class ApiError {
     this.statusCode = statusCode;
   }
 }
-export const errorHandler = (err: Error, _: Request, res: Response, __: NextFunction) => {
+export const errorHandler = (err: Error, _: RequestB, res: Response, __: NextFunction) => {
   if (err instanceof ApiError) {
     return res.status(err.statusCode).send({
       statusCode: err.statusCode,

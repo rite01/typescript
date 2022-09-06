@@ -1,4 +1,5 @@
-import { Request, Response } from 'express';
+import { Response } from 'express';
+import { RequestB } from 'src/middleware/authCheck';
 import { HttpMessage, HttpMessageCode } from '../constants';
 import { Cart } from '../model/cart.model';
 
@@ -12,7 +13,7 @@ import { Cart } from '../model/cart.model';
  * @discription add to cart controller.
  */
 /** */
-export const addCart = async (req: Request, res: Response): Promise<object> => {
+export const addCart = async (req: RequestB, res: Response): Promise<object> => {
   try {
     const { id: userId } = req.user;
     const { productId } = req.body;
@@ -80,7 +81,7 @@ export const getCartProduct = async (_: unknown, res: Response): Promise<object>
  * @discription Remove cart product by Id update cart model.
  */
 
-export const removeCart = async (req: Request, res: Response): Promise<object> => {
+export const removeCart = async (req: RequestB, res: Response): Promise<object> => {
   try {
     const { id: userId } = req.user;
     const { id: _id } = req.params;

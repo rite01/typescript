@@ -10,20 +10,18 @@ interface test {
   path: string,
   image: string
 }
-
-declare module 'express' {
-  export interface Request {
-    file: test;
-    params: { id: any; navTitle: string };
-    userId: string;
-    user: IUser,
-    userData: string[]
-    body: IProduct & IProductDetail & IUser;
-    headers: {
-      authorization?: string
-    }
+export interface RequestB {
+  file: test;
+  params: { id: any; navTitle: string };
+  userId: string;
+  user: IUser,
+  userData: string[]
+  body: IProduct & IProductDetail & IUser;
+  headers: {
+    authorization?: string
   }
 }
+
 /**
  *
  * @param {String} authorization
@@ -32,7 +30,7 @@ declare module 'express' {
  * @discription Token verify "auth check" middelwere.
  */
 
-export const verifyToken = (req: Request, res: Response, next: NextFunction): any => {
+export const verifyToken = (req: RequestB, res: Response, next: NextFunction): any => {
   const { authorization } = req.headers;
   if (!authorization) {
     return res
