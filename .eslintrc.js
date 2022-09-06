@@ -24,6 +24,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'no-shadow': 'off',
     extensions: 'off',
+    indent: 'off',
   },
   ignorePatterns: ['**/*.ejs'],
 };
