@@ -35,5 +35,6 @@ export const HttpMessage = {
   EDUCATOR_REGISTER: 'Educator register successfully',
   EDUCATOR_LOGIN_SUCCESSFULLY: 'Login successfully',
   YOU_ARE_NOT_AUTHORIZED: 'You are not Authorized user',
+  GET_CART_PRODUCT: 'Cart Product',
   BAD_REQUEST: 'bad req',
 };

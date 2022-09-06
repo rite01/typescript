@@ -33,12 +33,12 @@ export const educatorRegisterHandler = async (req: RequestB, res: Response, _: N
     await sendMail(email, newCode);
     return res
       .status(HttpMessageCode.CREATED)
-      .json({ error: HttpMessage.PLEASE_VERIFY_EMAIL });
+      .json({ message: HttpMessage.PLEASE_VERIFY_EMAIL });
   } catch (error: any) {
     console.log(error);
     return res
       .status(HttpMessageCode.INTERNAL_SERVER_ERROR)
-      .json({ message: HttpMessage.INTERNAL_SERVER_ERROR });
+      .json({ error: HttpMessage.INTERNAL_SERVER_ERROR });
   }
 };
 

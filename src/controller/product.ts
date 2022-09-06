@@ -90,7 +90,7 @@ export const getProduct = async (_: RequestB, res: Response, __: NextFunction): 
     if (productList.length === 0) {
       return res
         .status(HttpMessageCode.BAD_REQUEST)
-        .json({ message: HttpMessage.NO_DATA_FOUND });
+        .json({ error: HttpMessage.NO_DATA_FOUND });
     }
     return res
       .status(HttpMessageCode.OK)
