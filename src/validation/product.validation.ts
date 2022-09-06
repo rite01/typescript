@@ -28,10 +28,10 @@ export const productValidation = (req: RequestB, res: Response, next: NextFuncti
     image: joi.any(),
     updateDate: joi.number().required().label('Update Date'),
     courseTitle: joi.string().required().label('Course Title'),
-    discription: joi.string().required().label('Product discription'),
+    description: joi.string().required().label('Product description'),
     courseAuther: joi.string().label('Course Auther'),
     hours: joi.number().required().label('course Hours'),
-    courseSummry: joi.string().required().label('Course Summry'),
+    courseSummary: joi.string().required().label('Course Summry'),
     aboutProduct: joi.string().required().label('About Product'),
   });
   if (!req.body) {

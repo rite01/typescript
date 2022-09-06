@@ -35,20 +35,20 @@ export const productCreate = async (req: RequestB, res: Response, _: NextFunctio
       updateDate,
       bestSeller,
       courseTitle,
-      discription,
+      description,
       numReview,
       hours,
-      courseSummry,
+      courseSummary,
       aboutProduct,
     } = req.body;
     const result = await cloudinary.uploader.upload(image);
     const prodDetail = new ProductDetail({
       courseAuther: req?.user?.id,
       courseTitle,
-      discription,
+      description,
       numReview,
       hours,
-      courseSummry,
+      courseSummary,
       bestSeller,
       aboutProduct,
     });

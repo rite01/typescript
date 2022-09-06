@@ -7,7 +7,7 @@ export interface IProductDetail {
   numReview: number,
   courseSummary: string,
   aboutProduct: string,
-  discription: string,
+  description: string,
   hours: string,
   courseSummry: string
 }
@@ -24,7 +24,7 @@ const detailSchema = new mongoose.Schema({
     ref: 'user',
   },
   courseTitle: { type: String, require: true },
-  discription: { type: String, require: true },
+  description: { type: String, require: true },
   numReview: { type: Number, require: true },
   hours: { type: Number, require: true },
   courseSummary: { type: String, require: true },
