@@ -1,6 +1,7 @@
 {
   "devDependencies": {
     "@types/cors": "^2.8.12",
+    "@types/express-serve-static-core": "^4.17.30",
     "@types/jsonwebtoken": "^8.5.9",
     "@types/multer": "^1.4.7",
     "@types/nodemailer": "^6.4.5",
@@ -40,9 +41,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node-dev index.ts",
-    "format": "npx prettier --write"
+    "format": "npx prettier --write",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",

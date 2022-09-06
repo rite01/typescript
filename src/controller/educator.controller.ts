@@ -13,7 +13,7 @@ import { sendMail } from '../service/emailsend';
  * @access public
  * @discription educator Registration
  */
-export const educatorRegisterHandler = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const educatorRegisterHandler = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     const { email, fullName, password } = req.body;
     const user = await User.findOne({ email });
@@ -50,7 +50,7 @@ export const educatorRegisterHandler = async (req: Request, res: Response, next:
  * @discription Educator token verification controller.
  */
 
-export const educatorLoginHandler = async (req: Request, res: Response, next: NextFunction): Promise<object> => {
+export const educatorLoginHandler = async (req: Request, res: Response, _: NextFunction): Promise<object> => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });

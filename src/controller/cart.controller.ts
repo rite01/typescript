@@ -108,7 +108,7 @@ export const removeCart = async (req: Request, res: Response): Promise<object> =
     return res.status(HttpMessageCode.OK).json({
       statusCode: HttpMessageCode.OK,
       message: HttpMessage.DELETE_SINGLE_PRODUCT,
-      data,
+      data: updateData,
     });
   } catch (error: any) {
     return res.status(HttpMessageCode.BAD_REQUEST).json({ error: error.message });

@@ -4,7 +4,7 @@ import path from 'path';
 
 const uploadFile = multer({
   storage: multer.diskStorage({
-    filename(req: Request, file: any, cb: CallableFunction) {
+    filename(_: Request, file: any, cb: CallableFunction) {
       cb(
         null,
         `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`,

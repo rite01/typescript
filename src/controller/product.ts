@@ -24,7 +24,7 @@ import { Product } from '../model/productModel';
  * @discription Product Create Controller
  */
 
-export const productCreate = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const productCreate = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     const image = req?.file?.path;
     const {
@@ -83,7 +83,7 @@ export const productCreate = async (req: Request, res: Response, next: NextFunct
  * @discription Get product Api controller.
  */
 
-export const getProduct = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const getProduct = async (_: Request, res: Response, __: NextFunction): Promise<any> => {
   try {
     const productList = await Product.find({}).populate('detail');
     if (productList.length === 0) {
@@ -111,7 +111,7 @@ export const getProduct = async (req: Request, res: Response, next: NextFunction
  * @discription Get Product By Title controller.
  */
 
-export const getProductByTitle = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const getProductByTitle = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     const { navTitle } = req.params;
     const data = await Product.find({ navTitle }).populate('detail');
@@ -137,7 +137,7 @@ export const getProductByTitle = async (req: Request, res: Response, next: NextF
  * @discription Get Single Product controller.
  */
 
-export const getSingleProduct = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const getSingleProduct = async (req: Request, res: Response, _:NextFunction): Promise<any> => {
   try {
     const { id } = req.params;
     const data = await Product.findOne({ id }).populate('detail');
@@ -162,7 +162,7 @@ export const getSingleProduct = async (req: Request, res: Response, next: NextFu
  * @returns {message}
  * @discription update Product controller.
  */
-export const updateProduct = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const updateProduct = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     const { id } = req.params;
     const data = await Product.findByIdAndUpdate(
@@ -202,7 +202,7 @@ export const updateProduct = async (req: Request, res: Response, next: NextFunct
  * @returns {message}
  * @discription Delete Single Product controller.
  */
-export const deleteProduct = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const deleteProduct = async (req: Request, res: Response, _: NextFunction): Promise<any> => {
   try {
     const { id } = req.params;
     const data = await Product.findOneAndDelete({ id });

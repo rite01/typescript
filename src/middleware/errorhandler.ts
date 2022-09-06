@@ -12,7 +12,7 @@ export class ApiError {
     this.statusCode = statusCode;
   }
 }
-export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
+export const errorHandler = (err: Error, _: Request, res: Response, __: NextFunction) => {
   if (err instanceof ApiError) {
     return res.status(err.statusCode).send({
       statusCode: err.statusCode,

@@ -9,6 +9,6 @@ export interface IConfig {
 
 export const nodemailerConfig = {
   secret: process.env.SECRET,
-  user: '',
-  pass: '',
+  user: process.env.SMTP_USER,
+  pass: process.env.SMTP_PASSWORD,
 };

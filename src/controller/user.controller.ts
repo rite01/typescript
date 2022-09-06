@@ -15,7 +15,7 @@ import { sendMail } from '../service/emailsend';
  * @discription user registration
  */
 
-export const registerHandler = async (req: Request, res: Response, next: NextFunction): Promise<object> => {
+export const registerHandler = async (req: Request, res: Response, _: NextFunction): Promise<object> => {
   try {
     const { email, fullName, password } = req.body;
     const user = await User.findOne({ email });
@@ -53,7 +53,7 @@ export const registerHandler = async (req: Request, res: Response, next: NextFun
  * @discription user token verification controller.
  */
 
-export const verifyUser = async (req: Request, res: Response, next: NextFunction): Promise<object> => {
+export const verifyUser = async (req: Request, res: Response, _: NextFunction): Promise<object> => {
   try {
     const { confirmationCode } = req.body;
     const test = await User.findOne({ confirmationCode });
@@ -91,7 +91,7 @@ export const verifyUser = async (req: Request, res: Response, next: NextFunction
  * @discription user token verification controller.
  */
 
-export const resendOtp = async (req: Request, res: Response, next: NextFunction): Promise<object> => {
+export const resendOtp = async (_: Request, res: Response, __: NextFunction): Promise<object> => {
   try {
     const token = parseInt(`${Math.random() * 1000000}`, 10);
     const user = await User.findOne().sort({ _id: -1 });
@@ -125,7 +125,7 @@ export const resendOtp = async (req: Request, res: Response, next: NextFunction)
  * @discription user token verification controller.
  */
 
-export const loginHandler = async (req: Request, res: Response, next: NextFunction): Promise<object> => {
+export const loginHandler = async (req: Request, res: Response, _: NextFunction): Promise<object> => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -164,7 +164,7 @@ export const loginHandler = async (req: Request, res: Response, next: NextFuncti
  * @discription get all user api .
  */
 
-export const getUser = async (req: Request, res: Response, next: NextFunction): Promise<any> => {
+export const getUser = async (_: Request, res: Response, __: NextFunction): Promise<any> => {
   try {
     const userList = await User.find({});
     if (userList.length === 0) {

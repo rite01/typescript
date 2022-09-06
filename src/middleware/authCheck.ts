@@ -1,5 +1,7 @@
+/* eslint-disable no-undef */
 import { NextFunction, Request, Response } from 'express';
-import jwt, { VerifyErrors, JwtPayload } from 'jsonwebtoken';
+import jwt from 'jsonwebtoken';
+import { Types } from 'mongoose';
 import { HttpMessageCode, HttpMessage } from '../constants';
 import { IUser, User } from '../model';
 import { IProductDetail } from '../model/productDetail';
@@ -13,9 +15,12 @@ interface test {
 
 declare module 'express' {
   export interface Request {
+    file: test;
+    params: { id: any; navTitle: string };
+    userId: string;
     user: IUser,
     userData: string[]
-    body: IProduct & IProductDetail & IUser & test;
+    body: IProduct & IProductDetail & IUser;
     headers: {
       authorization?: string
     }
@@ -38,7 +43,7 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction): an
   }
   const token = authorization.replace('Bearer ', '');
   const key = process.env.JWTPRIVATEKEY;
-  return jwt.verify(token, (key as unknown as string), async (err: VerifyErrors, payload: JwtPayload) => {
+  return jwt.verify(token, (key as unknown as string), async (err: any, payload: any) => {
     if (err) {
       return res
         .status(HttpMessageCode.UNAUTHORIZED)

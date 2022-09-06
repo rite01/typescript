@@ -8,6 +8,7 @@ import { compareSync, genSalt, hashSync } from 'bcrypt';
 config();
 
 export interface IUser extends Document<Types.ObjectId> {
+  userFound: any;
   fullName: string;
   email: string;
   password: string;
@@ -16,7 +17,6 @@ export interface IUser extends Document<Types.ObjectId> {
   confirmationCode: number;
   isPasswordMatched: (password: string) => Promise<boolean>;
   generateAuthToken: () => string;
-  body?: any
 }
 
 const userSchema: Schema = new Schema(
