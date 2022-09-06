@@ -42,7 +42,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node-dev index.ts",
+    "start": "node dist/index.js",
+    "dev": "ts-node-dev index.ts",
     "format": "npx prettier --write",
     "build": "tsc"
   },

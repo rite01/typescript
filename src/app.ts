@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import database from './config/db';
 import restRouter from './router';
-// import { errorHandler } from './middleware/errorhandler';
 
 require('dotenv').config();
 
