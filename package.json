@@ -49,11 +49,17 @@
     "type": "git",
     "url": "git+https://github.com/amit-thoughtwin/uclone-backend.git"
   },
-  "keywords": [],
+  "keywords": [
+    "example",
+    "heroku"
+  ],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/amit-thoughtwin/uclone-backend/issues"
+  },
+  "engines": {
+    "node": "14.x"
   },
   "homepage": "https://github.com/amit-thoughtwin/uclone-backend#readme"
 }
