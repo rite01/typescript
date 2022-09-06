@@ -90,7 +90,7 @@ export const getProduct = async (_: RequestB, res: Response, __: NextFunction): 
     if (productList.length === 0) {
       return res
         .status(HttpMessageCode.BAD_REQUEST)
-        .json(HttpMessage.NO_DATA_FOUND);
+        .json({ message: HttpMessage.NO_DATA_FOUND });
     }
     return res
       .status(HttpMessageCode.OK)
@@ -138,7 +138,7 @@ export const getProductByTitle = async (req: RequestB, res: Response, _: NextFun
  * @discription Get Single Product controller.
  */
 
-export const getSingleProduct = async (req: RequestB, res: Response, _:NextFunction): Promise<any> => {
+export const getSingleProduct = async (req: RequestB, res: Response, _: NextFunction): Promise<any> => {
   try {
     const { id } = req.params;
     const data = await Product.findOne({ id }).populate('detail');

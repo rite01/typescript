@@ -108,10 +108,10 @@ export const resendOtp = async (_: RequestB, res: Response, __: NextFunction): P
     return res
       .status(HttpMessageCode.CREATED)
       .json(HttpMessage.OTP_RESEND);
-  } catch (error: any) {
+  } catch (error) {
     return res
       .status(HttpMessageCode.INTERNAL_SERVER_ERROR)
-      .json(HttpMessage.INTERNAL_SERVER_ERROR);
+      .json({ error: HttpMessage.INTERNAL_SERVER_ERROR });
   }
 };
 
@@ -126,19 +126,19 @@ export const resendOtp = async (_: RequestB, res: Response, __: NextFunction): P
  * @discription user token verification controller.
  */
 
-export const loginHandler = async (req: RequestB, res: Response, _: NextFunction): Promise<object> => {
+export const loginHandler = async (req: RequestB, res: Response, _: NextFunction): Promise<any> => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user || !user?.isPasswordMatched(password)) {
       return res
         .status(HttpMessageCode.UNAUTHORIZED)
-        .json(HttpMessage.INVALID_EMAIL);
+        .json({ message: HttpMessage.INVALID_EMAIL });
     }
     if (!user.isVerified) {
       return res
         .status(HttpMessageCode.NOT_FOUND)
-        .json(HttpMessage.USER_EMAIL_NOT_VERIFIED);
+        .json({ message: HttpMessage.USER_EMAIL_NOT_VERIFIED });
     }
     const token = user?.generateAuthToken();
     return res
@@ -171,7 +171,7 @@ export const getUser = async (_: RequestB, res: Response, __: NextFunction): Pro
     if (userList.length === 0) {
       return res
         .status(HttpMessageCode.BAD_REQUEST)
-        .json(HttpMessage.BAD_REQUEST);
+        .json({ message: HttpMessage.BAD_REQUEST });
     }
     return res
       .json({
@@ -179,9 +179,9 @@ export const getUser = async (_: RequestB, res: Response, __: NextFunction): Pro
         message: HttpMessage.USER_FOUND,
         data: userList,
       });
-  } catch (err: any) {
+  } catch (error: any) {
     return res
       .status(HttpMessageCode.BAD_REQUEST)
-      .json({ message: err.message });
+      .json({ error: error.message });
   }
 };

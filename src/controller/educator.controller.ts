@@ -38,7 +38,7 @@ export const educatorRegisterHandler = async (req: RequestB, res: Response, _: N
     console.log(error);
     return res
       .status(HttpMessageCode.INTERNAL_SERVER_ERROR)
-      .json(HttpMessage.INTERNAL_SERVER_ERROR);
+      .json({ message: HttpMessage.INTERNAL_SERVER_ERROR });
   }
 };
 
