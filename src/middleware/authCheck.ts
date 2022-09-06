@@ -1,7 +1,5 @@
-/* eslint-disable no-undef */
 import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
-import { Types } from 'mongoose';
 import { HttpMessageCode, HttpMessage } from '../constants';
 import { IUser, User } from '../model';
 import { IProductDetail } from '../model/productDetail';
