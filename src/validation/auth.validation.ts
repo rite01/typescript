@@ -2,6 +2,7 @@ import { NextFunction, Response } from 'express';
 import joi from 'joi';
 import passwordComplexity from 'joi-password-complexity';
 import { RequestB } from 'src/middleware/authCheck';
+import { HttpMessageCode } from '../constants/http-statuscode';
 
 /**
  *
@@ -20,9 +21,8 @@ export const userValidation = (req: RequestB, res: Response, next: NextFunction)
   });
   const { error } = schema.validate(req.body);
   if (error) {
-    return res.json({
-      message: error.details[0].message,
-    });
+    return res
+      .json({ status: HttpMessageCode.BAD_REQUEST, error: error.details[0].message });
   }
   return next();
 };

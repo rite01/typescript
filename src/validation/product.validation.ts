@@ -1,5 +1,6 @@
 import { NextFunction, Response } from 'express';
 import { RequestB } from 'src/middleware/authCheck';
+import { HttpMessageCode } from '../constants';
 
 const joi = require('joi');
 
@@ -42,6 +43,7 @@ export const productValidation = (req: RequestB, res: Response, next: NextFuncti
   const { error } = productSchema.validate(req.body);
   if (error) {
     return res.json({
+      status: HttpMessageCode.BAD_REQUEST,
       message: error.details[0].message,
     });
   }

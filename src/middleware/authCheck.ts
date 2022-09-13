@@ -11,12 +11,14 @@ interface test {
   image: string
 }
 export interface RequestB {
+  protocol: any;
+  originalUrl: any;
   file: test;
   params: { id: any; navTitle: string };
   userId: string;
   user: IUser,
-  userData: string[]
-  body: IProduct & IProductDetail & IUser;
+  userData: string[],
+  body: IProduct & IProductDetail & IUser,
   headers: {
     authorization?: string
   }
