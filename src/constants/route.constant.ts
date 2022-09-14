@@ -27,6 +27,12 @@ export const Routes = {
     UPDATEPRODUCT: '/update/product/:id',
     DELETEPRODUCT: '/delete/product/:id',
   },
+  WISHLIST: {
+    DEFAULT: '/',
+    ADDTOWISHLIST: '/addwishlist',
+    GETWISHLIST: '/getwishlist',
+    REMOVEWISHLIST: '/removewishlist/:id',
+  },
   CART: {
     DEFAULT: '/',
     ADDTOCART: '/addcart',

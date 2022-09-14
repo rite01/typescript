@@ -64,6 +64,7 @@ export const productCreate = async (req: RequestB, res: Response, _: NextFunctio
     });
     await createProduct.save();
     return res.status(HttpMessageCode.CREATED).json({
+      status: HttpMessageCode.CREATED,
       message: HttpMessage.PRODUCT_CREATED_SUCCESSFULLY,
       data: createProduct,
     });
@@ -89,12 +90,10 @@ export const getProduct = async (_: RequestB, res: Response, __: NextFunction): 
     const productList = await Product.find({}).populate('detail');
     if (productList.length === 0) {
       return res
-        .status(HttpMessageCode.BAD_REQUEST)
-        .json({ error: HttpMessage.NO_DATA_FOUND });
+        .json({ status: HttpMessageCode.NO_CONTENT, message: HttpMessage.NO_DATA_FOUND });
     }
     return res
-      .status(HttpMessageCode.OK)
-      .json({ message: HttpMessage.PRODUCT_FOUND, data: productList });
+      .json({ status: HttpMessageCode.OK, message: HttpMessage.PRODUCT_FOUND, data: productList });
   } catch (error: any) {
     console.log('error', error);
     return res
@@ -141,7 +140,7 @@ export const getProductByTitle = async (req: RequestB, res: Response, _: NextFun
 export const getSingleProduct = async (req: RequestB, res: Response, _: NextFunction): Promise<any> => {
   try {
     const { id } = req.params;
-    const data = await Product.findOne({ id }).populate('detail');
+    const data = await Product.findOne({ _id: id }).populate('detail');
     return res.status(HttpMessageCode.OK).json({
       statusCode: HttpMessageCode.OK,
       message: HttpMessage.GET_SINGLE_PRODUCT,
@@ -206,14 +205,14 @@ export const updateProduct = async (req: RequestB, res: Response, _: NextFunctio
 export const deleteProduct = async (req: RequestB, res: Response, _: NextFunction): Promise<any> => {
   try {
     const { id } = req.params;
-    const data = await Product.findOneAndDelete({ id });
+    const data = await Product.findOneAndDelete({ _id: id });
     return res.status(HttpMessageCode.OK).json({
       statusCode: HttpMessageCode.OK,
       message: HttpMessage.DELETE_SINGLE_PRODUCT,
       data,
     });
   } catch (error: any) {
-    console.log('error', error);
+    console.log('error>>>>', error);
     return res
       .status(HttpMessageCode.INTERNAL_SERVER_ERROR)
       .json({ error: error.message });

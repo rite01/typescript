@@ -13,7 +13,7 @@ export interface ICart extends ICartModel, Document {
   data: string
 }
 
-export const cartSchema = new Schema(
+const cartSchema = new Schema(
   {
     productId: [{ type: Schema.Types.ObjectId, ref: 'products' }],
     userId: { type: Schema.Types.ObjectId, ref: 'user' },

@@ -37,4 +37,6 @@ export const HttpMessage = {
   YOU_ARE_NOT_AUTHORIZED: 'You are not Authorized user',
   GET_CART_PRODUCT: 'Cart Product',
   BAD_REQUEST: 'bad req',
+  ADD_WISHLIST: 'add wishlist successfully',
+  GET_WISHLIST_PRODUCT: 'All wishlistProduct',
 };

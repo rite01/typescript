@@ -1,7 +1,8 @@
 import { NextFunction, Response } from 'express';
 import jwt from 'jsonwebtoken';
+import { Types } from 'mongoose';
 import { HttpMessageCode, HttpMessage } from '../constants';
-import { IUser, User } from '../model';
+import { IUser, IWishList, User } from '../model';
 import { IProductDetail } from '../model/productDetail';
 import { IProduct } from '../model/productModel';
 
@@ -19,6 +20,10 @@ export interface RequestB {
   user: IUser,
   userData: string[],
   body: IProduct & IProductDetail & IUser,
+  wishListFound: any,
+  updateData: (IWishList & {
+    _id: Types.ObjectId;
+  }) | null,
   headers: {
     authorization?: string
   }
