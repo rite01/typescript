@@ -1,4 +1,10 @@
 export const Routes = {
+  HOME: {
+    API_ENDPOINT: '/api/v1',
+    SWAGGER: '/api-docs',
+    HEALTH: '/health',
+    NOT_MATCH_ROUTE: '*',
+  },
   AUTH: {
     DEFAULT: '/',
     REGISTER: '/register',

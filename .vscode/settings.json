@@ -3,6 +3,7 @@
         "addwishlist",
         "bytitle",
         "cloudinary",
-        "getproduct"
+        "getproduct",
+        "openapi"
     ]
 }

@@ -1,11 +1,14 @@
-/* eslint-disable no-undef */
 import express, { Response } from 'express';
 import cors from 'cors';
 import swaggerJSDoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import database from './config/db';
 import restRouter from './router';
-import { HttpMessageCode } from './constants';
+import { HttpMessage, HttpMessageCode } from './constants';
+
+const {
+    Routes: { HOME },
+} = require('./constants');
 
 require('dotenv').config();
 
@@ -39,39 +42,25 @@ const option = {
             },
         ],
         basePath: '/',
-        // components: {
-        //   securitySchemes: {
-        //     bearerAuth: {
-        //       type: "http",
-        //       scheme: "bearer",
-        //       bearerFormat: "JWT",
-        //     },
-        //   },
-        // },
-        // security: [
-        //   {
-        //     bearerAuth: [],
-        //   },
-        // ],
     },
     apis: [`${__dirname}/router/*.ts`],
 };
-console.log(`${__dirname}/router/*.ts`);
 const specs = swaggerJSDoc(option);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
+
+app.use(HOME.SWAGGER, swaggerUi.serve, swaggerUi.setup(specs));
 
 // routes
 
-app.use('/api/v1', restRouter);
+app.use(HOME.API_ENDPOINT, restRouter);
 
-app.get('/health', (_, res: Response, __) => res.status(200).json({
+app.get(HOME.HEALTH, (_, res: Response, __) => res.status(HttpMessageCode.CREATED).json({
     status: true,
-    message: 'Server is up ready to rock!',
+    message: HttpMessage.SERVER_START,
 }));
 
-app.use('*', (_req, res) => res.status(400).json({
+app.use(HOME.NOT_MATCH_ROUTE, (_req, res) => res.status(HttpMessageCode.BAD_REQUEST).json({
     status: HttpMessageCode.BAD_REQUEST,
-    message: 'Url not match',
+    message: HttpMessage.NOT_MATCH,
 }));
 
 export default app;

@@ -41,4 +41,6 @@ export const HttpMessage = {
   GET_WISHLIST_PRODUCT: 'All wishlistProduct',
   TITLE_ALREADY_GIVEN: 'title already given',
   CREATED: 'created',
+  SERVER_START: 'Server is up ready to rock!',
+  NOT_MATCH: 'Url not match',
 };
