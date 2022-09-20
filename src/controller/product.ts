@@ -1,5 +1,6 @@
 import { NextFunction, Response } from 'express';
 import { RequestB } from 'src/middleware/authCheck';
+import { Title } from '../../src/model';
 import { ProductDetail } from '../model/productDetail';
 import cloudinary from '../service/clodinary';
 import { HttpMessage, HttpMessageCode } from '../constants';
@@ -27,6 +28,7 @@ import { Product } from '../model/productModel';
 
 export const productCreate = async (req: RequestB, res: Response, _: NextFunction): Promise<any> => {
   try {
+    const { id } = req.params;
     const image = req?.file?.path;
     const {
       heading,
@@ -61,6 +63,7 @@ export const productCreate = async (req: RequestB, res: Response, _: NextFunctio
       updateDate,
       bestSeller,
       detail: test.id,
+      category: id,
     });
     await createProduct.save();
     return res.status(HttpMessageCode.CREATED).json({
@@ -94,32 +97,6 @@ export const getProduct = async (_: RequestB, res: Response, __: NextFunction): 
     }
     return res
       .json({ status: HttpMessageCode.OK, message: HttpMessage.PRODUCT_FOUND, data: productList });
-  } catch (error: any) {
-    console.log('error', error);
-    return res
-      .status(HttpMessageCode.INTERNAL_SERVER_ERROR)
-      .json({ error: error.message });
-  }
-};
-
-/**
- * Route api/v1/get/product/bytitle/:navtitle
- *
- * @param {String} navTitle
- * @access public
- * @returns {message}
- * @discription Get Product By Title controller.
- */
-
-export const getProductByTitle = async (req: RequestB, res: Response, _: NextFunction): Promise<any> => {
-  try {
-    const { navTitle } = req.params;
-    const data = await Product.find({ navTitle }).populate('detail');
-    return res.status(HttpMessageCode.OK).json({
-      statusCode: HttpMessageCode.OK,
-      message: `Product List ${navTitle}`,
-      data,
-    });
   } catch (error: any) {
     console.log('error', error);
     return res
@@ -213,6 +190,93 @@ export const deleteProduct = async (req: RequestB, res: Response, _: NextFunctio
     });
   } catch (error: any) {
     console.log('error>>>>', error);
+    return res
+      .status(HttpMessageCode.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+  }
+};
+
+/**
+ * Route api/v1/createTitle
+ *
+ * @param {String} _id
+ * @param {String} productNev
+ * @access public
+ * @returns {message}
+ * @discription create title handler.
+ */
+
+export const titleHandler = async (req: RequestB, res: Response, _: NextFunction): Promise<object> => {
+  try {
+    const { productNev } = req.body;
+    const productTitle = await Title.findOne({ productNev });
+    if (productTitle) {
+      return res
+        .status(HttpMessageCode.CONFLICT)
+        .json({ error: HttpMessage.TITLE_ALREADY_GIVEN });
+    }
+    const data = await new Title({
+      productNev,
+    }).save();
+    return res
+      .json({
+        statusCode: HttpMessageCode.CREATED,
+        message: HttpMessage.CREATED,
+        data,
+      });
+  } catch (error) {
+    return res
+      .status(HttpMessageCode.INTERNAL_SERVER_ERROR)
+      .json({ error: HttpMessage.INTERNAL_SERVER_ERROR });
+  }
+};
+
+/**
+ * Route /api/v1/g/product/titleList
+ *
+ * @param {String} titleList
+ * @access public
+ * @returns {message}
+ * @discription get nev title list handler.
+ */
+
+export const getNevTitle = async (_: RequestB, res: Response, __: NextFunction): Promise<any> => {
+  try {
+    const titleList = await Title.find({});
+    if (titleList.length === 0) {
+      return res
+        .json({ status: HttpMessageCode.NO_CONTENT, message: HttpMessage.NO_DATA_FOUND });
+    }
+    return res
+      .json({ status: HttpMessageCode.OK, message: HttpMessage.PRODUCT_FOUND, data: titleList });
+  } catch (error: any) {
+    console.log('error', error);
+    return res
+      .status(HttpMessageCode.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+  }
+};
+
+/**
+ * Route api/v1/get/product/bytitle/:navtitle
+ *
+ * @param {String} id
+ * @access public
+ * @returns {message}
+ * @discription Get Product By Title controller.
+ */
+
+export const getProductByTitle = async (req: RequestB, res: Response, _: NextFunction): Promise<any> => {
+  try {
+    const { id } = req.params;
+    const data = await Product.find({ category: id }).populate('detail');
+    return res.status(HttpMessageCode.OK).json({
+      statusCode: HttpMessageCode.OK,
+      message: `Product List ${id}`,
+      data,
+    });
+  } catch (error: any) {
+    console.log('error', error);
     return res
       .status(HttpMessageCode.INTERNAL_SERVER_ERROR)
       .json({ error: error.message });

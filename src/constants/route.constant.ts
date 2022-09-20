@@ -20,12 +20,14 @@ export const Routes = {
   },
   PRODUCT: {
     DEFAULT: '/',
-    POSTCREATE: '/create',
+    POSTCREATE: '/create/:id',
     GETPRODUCT: '/getallproduct',
-    GETPRODUCTBYTITLE: '/get/product/bytitle/:navtitle',
+    GETPRODUCTBYTITLE: '/getproduct/bytitle/:id',
     GETPRODUCTBYID: '/get/product/:id',
     UPDATEPRODUCT: '/update/product/:id',
     DELETEPRODUCT: '/delete/product/:id',
+    TITLELIST: '/product/titleList',
+    TITLE: '/createTitle',
   },
   WISHLIST: {
     DEFAULT: '/',

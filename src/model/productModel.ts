@@ -27,9 +27,10 @@ const productSchema = new mongoose.Schema({
   price: { type: Number, require: true },
   updateDate: { type: String, require: true },
   bestSeller: { type: Boolean, default: false },
+  category: { type: String, ref: 'title' },
   detail: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'productdetail',
+    ref: 'productDetail',
   },
 });
 

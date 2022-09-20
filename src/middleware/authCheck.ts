@@ -2,7 +2,9 @@ import { NextFunction, Response } from 'express';
 import jwt from 'jsonwebtoken';
 import { Types } from 'mongoose';
 import { HttpMessageCode, HttpMessage } from '../constants';
-import { IUser, IWishList, User } from '../model';
+import {
+  IProductTitle, IUser, IWishList, User,
+} from '../model';
 import { IProductDetail } from '../model/productDetail';
 import { IProduct } from '../model/productModel';
 
@@ -15,12 +17,13 @@ export interface RequestB {
   protocol: any;
   originalUrl: any;
   file: test;
-  params: { id: any; navTitle: string };
+  params: { id: any; navTitle: string; productNev: string; };
   userId: string;
   user: IUser,
   userData: string[],
-  body: IProduct & IProductDetail & IUser,
+  body: IProduct & IProductDetail & IUser & IProductTitle,
   wishListFound: any,
+  category: any,
   updateData: (IWishList & {
     _id: Types.ObjectId;
   }) | null,

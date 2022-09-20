@@ -39,4 +39,6 @@ export const HttpMessage = {
   BAD_REQUEST: 'bad req',
   ADD_WISHLIST: 'add wishlist successfully',
   GET_WISHLIST_PRODUCT: 'All wishlistProduct',
+  TITLE_ALREADY_GIVEN: 'title already given',
+  CREATED: 'created',
 };

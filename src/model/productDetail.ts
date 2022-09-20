@@ -2,24 +2,19 @@ import mongoose, { Document } from 'mongoose';
 
 export interface IProductDetail {
   courseId: string,
-  courseAuther: string,
+  courseAuthor: string,
   courseTitle: string,
   numReview: number,
   courseSummary: string,
   aboutProduct: string,
   description: string,
   hours: string,
-  courseSummry: string
 }
 
 export interface IDetail extends IProductDetail, Document { }
 
 const detailSchema = new mongoose.Schema({
-  courseId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'products',
-  },
-  courseAuther: {
+  courseAuthor: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'user',
   },
@@ -31,4 +26,4 @@ const detailSchema = new mongoose.Schema({
   aboutProduct: { type: String, require: true },
 });
 
-export const ProductDetail = mongoose.model<IDetail>('productdetail', detailSchema);
+export const ProductDetail = mongoose.model<IDetail>('productDetail', detailSchema);

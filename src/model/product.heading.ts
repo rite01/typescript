@@ -1,14 +1,14 @@
 import mongoose, { Document, Schema } from 'mongoose';
 
 export interface IProductTitle {
-    title: string
+    productNev: string
 }
 
 export interface ITitle extends IProductTitle, Document { }
 
 export const productHeadingSchema = new Schema(
     {
-        title: { type: String, require: true },
+        productNev: { type: String, require: true },
     },
 );
 

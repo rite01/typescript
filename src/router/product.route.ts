@@ -1,5 +1,5 @@
 import {
-  productCreate, getProduct, getSingleProduct, deleteProduct, updateProduct, getProductByTitle,
+  productCreate, getProduct, getSingleProduct, deleteProduct, updateProduct, getProductByTitle, titleHandler, getNevTitle,
 } from '../controller/product';
 import { verifyToken } from '../middleware/authCheck';
 import { checkRole } from '../middleware/checkRole';
@@ -20,6 +20,8 @@ productRoute.post(
   productValidation,
   productCreate,
 );
+productRoute.post(PRODUCT.TITLE, verifyToken, checkRole('educator'), titleHandler);
+productRoute.get(PRODUCT.TITLELIST, verifyToken, checkRole('educator'), getNevTitle);
 productRoute.get(PRODUCT.GETPRODUCT, getProduct);
 productRoute.get(PRODUCT.GETPRODUCTBYID, getSingleProduct);
 productRoute.delete(PRODUCT.DELETEPRODUCT, deleteProduct);
