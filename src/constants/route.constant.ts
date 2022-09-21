@@ -19,9 +19,9 @@ export const Routes = {
   },
   EDUCATOR: {
     DEFAULT: '/',
+    EDUCATORREGISTER: '/educator/register',
     VERIFY_OTP: '/educator/otpverify',
     RESEND_OTP: '/educator/resend',
-    EDUCATORREGISTER: '/educator/register',
     EDUCATORLOGIN: '/educator/login',
   },
   PRODUCT: {

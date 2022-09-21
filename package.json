@@ -53,7 +53,7 @@
     "format": "npx prettier --write",
     "build": "tsc"
   },
-  "repository": {
+  "repository": { 
     "type": "git",
     "url": "git+https://github.com/amit-thoughtwin/uclone-backend.git"
   },

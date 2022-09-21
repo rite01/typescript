@@ -1,10 +1,9 @@
 import { NextFunction, Response } from 'express';
-import { RequestB } from 'src/middleware/authCheck';
-import { Title } from '../../src/model';
+import { RequestB } from '../middleware/authCheck';
+import { Product, Title } from '../model';
 import { ProductDetail } from '../model/productDetail';
 import cloudinary from '../service/clodinary';
 import { HttpMessage, HttpMessageCode } from '../constants';
-import { Product } from '../model/productModel';
 
 /**
  * route api/v1/create
@@ -18,7 +17,6 @@ import { Product } from '../model/productModel';
  * @param {string} courseTitle
  * @param {string} discription
  * @param {Number} numReview
- * @param {string} discription
  * @param {string} courseSummry
  * @param {string} aboutProduct
  * @returns {message}
@@ -45,7 +43,7 @@ export const productCreate = async (req: RequestB, res: Response, _: NextFunctio
     } = req.body;
     const result = await cloudinary.uploader.upload(image);
     const prodDetail = new ProductDetail({
-      courseAuther: req?.user?.id,
+      courseAuthor: req?.user?.id,
       courseTitle,
       description,
       numReview,

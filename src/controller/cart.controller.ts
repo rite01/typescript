@@ -97,15 +97,15 @@ export const removeCart = async (req: RequestB, res: Response): Promise<object> 
         .status(HttpMessageCode.UNPROCESSABLE_ENTITY)
         .json({ error: HttpMessage.NO_DATA_FOUND_FROM_THIS_ID });
     }
-    const removeItem = data.productId.find((element: string) => element !== _id);
-    data.productId = (removeItem as unknown as string[]);
+    // const removeItem = data.productId.find((element: string) => element !== _id);
+    // data.productId = (removeItem as unknown as string[]);
 
-    // const updateData = await Cart.findOneAndUpdate(
-    //   { userId: userId },
-    //   { $pull: { productId: _id } },
-    //   { new: true }
-    // );
-    const updateData = await data.save();
+    const updateData: any = await Cart.findOneAndUpdate(
+      { userId },
+      { $pull: { productId: _id } },
+      { new: true },
+    );
+    await updateData.save();
     return res.status(HttpMessageCode.OK).json({
       statusCode: HttpMessageCode.OK,
       message: HttpMessage.DELETE_SINGLE_PRODUCT,

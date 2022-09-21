@@ -107,7 +107,7 @@ export const resendOtp = async (_: RequestB, res: Response, __: NextFunction): P
     await sendMail((data?.email as unknown as string), (data?.confirmationCode as unknown as number));
     return res
       .status(HttpMessageCode.CREATED)
-      .json(HttpMessage.OTP_RESEND);
+      .json({ message: HttpMessage.OTP_RESEND, data });
   } catch (error) {
     return res
       .status(HttpMessageCode.INTERNAL_SERVER_ERROR)
