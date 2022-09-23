@@ -303,7 +303,7 @@ productRoute.get(PRODUCT.GETPRODUCTBYTITLE, getProductByTitle);
  *          '500':
  *                  description: Internal server error
  */
-productRoute.post(PRODUCT.TITLE, checkRole('educator'), titleHandler);
+productRoute.post(PRODUCT.TITLE, titleHandler);
 
 /**
  * @swagger
@@ -334,6 +334,6 @@ productRoute.post(PRODUCT.TITLE, checkRole('educator'), titleHandler);
  *          '500':
  *                  description: Internal server error
  */
-productRoute.get(PRODUCT.TITLELIST, verifyToken, checkRole('educator'), getNevTitle);
+productRoute.get(PRODUCT.TITLELIST, getNevTitle);
 
 export default productRoute;
