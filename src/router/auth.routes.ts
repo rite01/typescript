@@ -12,7 +12,7 @@ const {
  * @swagger
  * components:
  *      schemas:
- *          UserRegister & login api:
+ *          UserRegister and login api:
  *              type: object
  *              required :
  *                  - fullName
@@ -31,14 +31,14 @@ const {
  * @swagger
 /api/v1/register:
  *  post:
- *      summary: User Registration
- *      tags: [UserRegister & login api]
+ *      summary: UserRegister and login api
+ *      tags: [UserRegister and login api]
  *      requestBody:
  *         required: true
  *         content:
  *                     application/json:
  *                      schema:
- *                         $ref: '#/components/schemas/UserRegister & login api'
+ *                         $ref: '#/components/schemas/UserRegister and login api'
  *      responses:
  *          '200':
  *              description: success
@@ -53,7 +53,7 @@ authRouter.post(AUTH.REGISTER, userValidation, registerHandler);
  * @swagger
  * components:
  *      schemas:
- *          Otp Verification:
+ *          UserRegister and login api:
  *              type: object
  *              required :
  *                  - confirmationCode
@@ -66,14 +66,14 @@ authRouter.post(AUTH.REGISTER, userValidation, registerHandler);
  * @swagger
 /api/v1/otpverify:
  *  post:
- *      summary: Otp verification
- *      tags: [UserRegister & login api]
+ *      summary: Otp Verification and Resend Otp
+ *      tags: [UserRegister and login api]
  *      requestBody:
  *         required: true
  *         content:
  *                     application/json:
  *                      schema:
- *                         $ref: '#/components/schemas/Otp UserRegister & login api'
+ *                         $ref: '#/components/schemas/UserRegister and login api'
  *      responses:
  *          '200':
  *              description: success
@@ -88,7 +88,7 @@ authRouter.post(AUTH.VERIFY, verifyUser);
  * @swagger
  * components:
  *      schemas:
- *          Resend Otp:
+ *          UserRegister and login api:
  *              type: object
  *              required :
  *                  - confirmationCode
@@ -101,14 +101,14 @@ authRouter.post(AUTH.VERIFY, verifyUser);
  * @swagger
 /api/v1/resend:
  *  post:
- *      summary: Resend Otp
- *      tags: [UserRegister & login api]
+ *      summary: Otp Verification and Resend Otp
+ *      tags: [UserRegister and login api]
  *      requestBody:
  *         required: true
  *         content:
  *                     application/json:
  *                      schema:
- *                         $ref: '#/components/schemas/UserRegister & login api'
+ *                         $ref: '#/components/schemas/UserRegister and login api'
  *      responses:
  *          '200':
  *              description: success
@@ -123,7 +123,7 @@ authRouter.post(AUTH.RESEND, resendOtp);
  * @swagger
  * components:
  *      schemas:
- *          Login User:
+ *          UserRegister and login api:
  *              type: object
  *              required :
  *                  - email
@@ -140,13 +140,13 @@ authRouter.post(AUTH.RESEND, resendOtp);
 /api/v1/login:
  *  post:
  *      summary: Login User
- *      tags: [UserRegister & login api]
+ *      tags: [UserRegister and login api]
  *      requestBody:
  *         required: true
  *         content:
  *                     application/json:
  *                      schema:
- *                         $ref: '#/components/schemas/UserRegister & login api'
+ *                         $ref: '#/components/schemas/UserRegister and login api'
  *      responses:
  *          '200':
  *              description: success
@@ -165,7 +165,7 @@ authRouter.post(AUTH.LOGIN, loginHandler);
  * @swagger
  * components:
  *      schemas:
- *          Login User:
+ *          UserRegister and login api:
  *              type: object
  */
 
@@ -174,7 +174,7 @@ authRouter.post(AUTH.LOGIN, loginHandler);
 /api/v1/alluser:
  *  get:
  *      summary: Get all user and educator
- *      tags: [UserRegister & login api]
+ *      tags: [UserRegister and login api]
 
  *      responses:
  *          '200':

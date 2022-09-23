@@ -12,7 +12,7 @@ const {
  * @swagger
  * components:
  *      schemas:
- *          Educator Register:
+ *          Educator Register and Login:
  *              type: object
  *              required :
  *                  - fullName
@@ -32,13 +32,13 @@ const {
 /api/v1/educator/register:
  *  post:
  *      summary: Educator Register
- *      tags: [Educator Register & Login]
+ *      tags: [Educator Register and Login]
  *      requestBody:
  *         required: true
  *         content:
  *                     application/json:
  *                      schema:
- *                         $ref: '#/components/schemas/Educator Register & Login'
+ *                         $ref: '#/components/schemas/Educator Register and Login'
  *      responses:
  *          '200':
  *              description: success
@@ -57,7 +57,7 @@ educatorRoute.post(
  * @swagger
  * components:
  *      schemas:
- *          Educator Otp Verification:
+ *          Educator Register and Login:
  *              type: object
  *              required :
  *                  - confirmationCode
@@ -71,13 +71,13 @@ educatorRoute.post(
 /api/v1/educator/otpverify:
  *  post:
  *      summary: Otp verification
- *      tags: [Educator Register & Login]
+ *      tags: [Educator Register and Login]
  *      requestBody:
  *         required: true
  *         content:
  *                     application/json:
  *                      schema:
- *                         $ref: '#/components/schemas/Educator Register & Login'
+ *                         $ref: '#/components/schemas/Educator Register and Login'
  *      responses:
  *          '200':
  *              description: success
@@ -92,7 +92,7 @@ educatorRoute.post(EDUCATOR.VERIFY_OTP, verifyUser);
  * @swagger
  * components:
  *      schemas:
- *          Educator Resend Otp:
+ *          Educator Register and Login:
  *              type: object
  *              required :
  *                  - confirmationCode
@@ -106,13 +106,13 @@ educatorRoute.post(EDUCATOR.VERIFY_OTP, verifyUser);
 /api/v1/educator/resend:
  *  post:
  *      summary: Resend Otp
- *      tags: [Educator Register & Login]
+ *      tags: [Educator Register and Login]
  *      requestBody:
  *         required: true
  *         content:
  *                     application/json:
  *                      schema:
- *                         $ref: '#/components/schemas/Educator Register & Login'
+ *                         $ref: '#/components/schemas/Educator Register and Login'
  *      responses:
  *          '200':
  *              description: success
@@ -127,11 +127,12 @@ educatorRoute.post(EDUCATOR.RESEND_OTP, resendOtp);
  * @swagger
  * components:
  *      schemas:
- *          Educator Login:
+ *          Educator Register and Login:
  *              type: object
  *              required :
  *                  - email
  *                  - password
+ *              properties:
  *                  email:
  *                      type: string
  *                  password:
@@ -143,13 +144,13 @@ educatorRoute.post(EDUCATOR.RESEND_OTP, resendOtp);
 /api/v1/educator/login:
  *  post:
  *      summary: Login Educator
- *      tags: [Educator Register & Login]
+ *      tags: [Educator Register and Login]
  *      requestBody:
  *         required: true
  *         content:
  *                     application/json:
  *                      schema:
- *                         $ref: '#/components/schemas/Educator Register & Login'
+ *                         $ref: '#/components/schemas/Educator Register and Login'
  *      responses:
  *          '200':
  *              description: success

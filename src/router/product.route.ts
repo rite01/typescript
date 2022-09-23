@@ -18,6 +18,7 @@ const {
  *          Product Create:
  *              type: object
  *              required :
+ *                  - in: formData
  *                  - heading
  *                  - title
  *                  - price
@@ -39,6 +40,7 @@ const {
  *                      type: string
  *                  image:
  *                      type: string
+ *                      format: binary
  *                  courseTitle:
  *                      type: string
  *                  description:
@@ -54,14 +56,16 @@ const {
  * @swagger
 /api/v1/create/:id:
  *  post:
- *      summary: Product create
+ *      summary: Product Create
  *      tags: [Product Create - (role-'educator')]
+ *      content-type: multipart/form-data;
  *      requestBody:
  *         required: true
  *         content:
- *                     application/json:
- *                      schema:
- *                         $ref: '#/components/schemas/Product Create'
+ *          multipart/form-data:
+ *            schema:
+ *              $ref: '#/components/schemas/Product Create'
+ *
  *      responses:
  *          '200':
  *              description: success
@@ -269,7 +273,7 @@ productRoute.get(PRODUCT.GETPRODUCTBYTITLE, getProductByTitle);
  * @swagger
  * components:
  *      schemas:
- *          Product Create:
+ *          Product Nev Title:
  *              type: object
  *              required :
  *                  - productNev
@@ -305,7 +309,7 @@ productRoute.post(PRODUCT.TITLE, checkRole('educator'), titleHandler);
  * @swagger
  * components:
  *      schemas:
- *          Product Create:
+ *          Product Nev Title:
  *              type: object
  *
  */

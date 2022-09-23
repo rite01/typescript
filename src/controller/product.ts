@@ -42,6 +42,7 @@ export const productCreate = async (req: RequestB, res: Response, _: NextFunctio
       aboutProduct,
     } = req.body;
     const result = await cloudinary.uploader.upload(image);
+    // const tit = await Title.findOne({});
     const prodDetail = new ProductDetail({
       courseAuthor: req?.user?.id,
       courseTitle,
