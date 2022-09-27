@@ -13,6 +13,7 @@ export interface IProduct {
   price: number,
   updateDate: Date,
   bestSeller: boolean
+  courseAuthor: string,
 }
 
 export interface IProductCreate extends IProduct, Document { }
@@ -28,6 +29,10 @@ const productSchema = new mongoose.Schema({
   updateDate: { type: String, require: true },
   bestSeller: { type: Boolean, default: false },
   category: { type: String, ref: 'title' },
+  courseAuthor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+  },
   detail: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'productDetail',
