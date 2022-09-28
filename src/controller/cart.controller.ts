@@ -24,11 +24,17 @@ export const addCart = async (req: RequestB, res: Response): Promise<object> => 
     }
     const cartFound = await Cart.findOne({ userId });
     if (cartFound) {
-      const productAdd = cartFound.productId.find((i: string | number) => i === productId);
+      const productAdd = cartFound.productId.find((i: string) => {
+        const item = i
+          .toString()
+          .replace(/ObjectId\("(.*)"\)/, '$1');
+        return item === productId;
+      });
       if (productAdd) {
-        return res
-          .status(HttpMessageCode.UNPROCESSABLE_ENTITY)
-          .json({ error: HttpMessage.POST_ADD_ALREADY });
+        return res.json({
+          statusCode: HttpMessageCode.NOT_ACCEPTABLE,
+          message: 'already added',
+        });
       }
       cartFound.productId.push(productId);
       const createCart = await cartFound.save();
@@ -46,6 +52,7 @@ export const addCart = async (req: RequestB, res: Response): Promise<object> => 
       data: createCart,
     });
   } catch (err: any) {
+    console.log(err);
     return res
       .status(HttpMessageCode.UNPROCESSABLE_ENTITY)
       .json({ error: err.message });
