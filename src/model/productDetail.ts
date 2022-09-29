@@ -14,6 +14,10 @@ export interface IProductDetail {
 export interface IDetail extends IProductDetail, Document { }
 
 const detailSchema = new mongoose.Schema({
+  courseAuthor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user',
+  },
   courseTitle: { type: String, require: true },
   description: { type: String, require: true },
   numReview: { type: Number, require: true },

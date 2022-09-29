@@ -80,7 +80,7 @@ cartRoute.post(CART.ADDTOCART, verifyToken, addCart);
  *          '500':
  *                  description: Internal server error
  */
-cartRoute.get(CART.GETCART, verifyToken, getCartProduct);
+cartRoute.get(CART.GETCART, getCartProduct);
 
 /**
  * @swagger

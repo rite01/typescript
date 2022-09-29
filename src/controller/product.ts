@@ -89,7 +89,13 @@ export const productCreate = async (req: RequestB, res: Response, _: NextFunctio
 
 export const getProduct = async (_: RequestB, res: Response, __: NextFunction): Promise<any> => {
   try {
-    const productList = await Product.find({}).populate('detail');
+    const productList = await Product.find({}).populate({
+      path: 'detail',
+      populate: {
+        path: 'courseAuthor',
+        model: 'user',
+      },
+    });
     if (productList.length === 0) {
       return res
         .json({ status: HttpMessageCode.NO_CONTENT, message: HttpMessage.NO_DATA_FOUND });
@@ -116,7 +122,13 @@ export const getProduct = async (_: RequestB, res: Response, __: NextFunction): 
 export const getSingleProduct = async (req: RequestB, res: Response, _: NextFunction): Promise<any> => {
   try {
     const { id } = req.params;
-    const data = await Product.findOne({ _id: id }).populate('detail');
+    const data = await Product.findOne({ _id: id }).populate({
+      path: 'detail',
+      populate: {
+        path: 'courseAuthor',
+        model: 'user',
+      },
+    });
     return res.status(HttpMessageCode.OK).json({
       statusCode: HttpMessageCode.OK,
       message: HttpMessage.GET_SINGLE_PRODUCT,
