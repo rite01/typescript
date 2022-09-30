@@ -1,4 +1,6 @@
-import { addCart, getCartProduct, removeCart } from '../controller';
+import {
+  addCart, getCartProduct, removeCart,
+} from '../controller';
 import { verifyToken } from '../middleware/authCheck';
 
 const cartRoute = require('express').Router();
@@ -80,7 +82,7 @@ cartRoute.post(CART.ADDTOCART, verifyToken, addCart);
  *          '500':
  *                  description: Internal server error
  */
-cartRoute.get(CART.GETCART, getCartProduct);
+cartRoute.get(CART.GETCART, verifyToken, getCartProduct);
 
 /**
  * @swagger

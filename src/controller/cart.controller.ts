@@ -69,9 +69,9 @@ export const addCart = async (req: RequestB, res: Response): Promise<object> => 
  */
 
 /** */
-export const getCartProduct = async (_: unknown, res: Response): Promise<object> => {
+export const getCartProduct = async (req: RequestB, res: Response): Promise<object> => {
   try {
-    const cartData = await Cart.find({}).populate('productId');
+    const cartData = await Cart.find({ userId: req.user._id }).populate('productId');
     return res.status(HttpMessageCode.OK).json({ message: HttpMessage.GET_CART_PRODUCT, data: cartData });
   } catch (err: any) {
     return res.status(HttpMessageCode.BAD_REQUEST).json({ error: err.message });

@@ -31,6 +31,7 @@ export const registerHandler = async (req: RequestB, res: Response, _: NextFunct
       password,
     }).save();
     const newCode = data.confirmationCode;
+    console.log(newCode);
     await sendMail(email, newCode);
     return res
       .json({
