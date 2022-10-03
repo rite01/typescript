@@ -26,7 +26,6 @@ import { HttpMessage, HttpMessageCode } from '../constants';
 
 export const productCreate = async (req: RequestB, res: Response, _: NextFunction): Promise<any> => {
   try {
-    const { id } = req.params;
     const image = req?.file?.path;
     const {
       heading,
@@ -40,9 +39,9 @@ export const productCreate = async (req: RequestB, res: Response, _: NextFunctio
       hours,
       courseSummary,
       aboutProduct,
+      category,
     } = req.body;
     const result = await cloudinary.uploader.upload(image);
-    // const tit = await Title.findOne({});
     const prodDetail = new ProductDetail({
       courseAuthor: req?.user?.id,
       courseTitle,
@@ -62,7 +61,7 @@ export const productCreate = async (req: RequestB, res: Response, _: NextFunctio
       updateDate,
       bestSeller,
       detail: test.id,
-      category: id,
+      category,
     });
     await createProduct.save();
     return res.status(HttpMessageCode.CREATED).json({

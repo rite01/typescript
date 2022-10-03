@@ -14,6 +14,7 @@ interface test {
   image: string
 }
 export interface RequestB {
+  _id: Types.ObjectId;
   protocol: any;
   originalUrl: any;
   file: test;

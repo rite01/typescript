@@ -32,6 +32,7 @@ export const productValidation = (req: RequestB, res: Response, next: NextFuncti
     description: joi.string().required().label('Product description'),
     courseAuther: joi.string().label('Course Auther'),
     hours: joi.number().required().label('course Hours'),
+    category: joi.string(),
     courseSummary: joi.string().required().label('Course Summry'),
     aboutProduct: joi.string().required().label('About Product'),
   });

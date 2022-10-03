@@ -134,7 +134,7 @@ export const loginHandler = async (req: RequestB, res: Response, _: NextFunction
     if (!user || !user?.isPasswordMatched(password)) {
       return res
         .status(HttpMessageCode.UNAUTHORIZED)
-        .json({ message: HttpMessage.INVALID_EMAIL });
+        .json({ statusCode: HttpMessageCode.UNAUTHORIZED, message: HttpMessage.INVALID_EMAIL });
     }
     if (!user.isVerified) {
       return res

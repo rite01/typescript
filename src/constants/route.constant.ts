@@ -26,7 +26,7 @@ export const Routes = {
   },
   PRODUCT: {
     DEFAULT: '/',
-    POSTCREATE: '/create/:id',
+    POSTCREATE: '/create',
     GETPRODUCT: '/getallproduct',
     GETPRODUCTBYTITLE: '/getproduct/bytitle/:id',
     GETPRODUCTBYID: '/get/product/:id',

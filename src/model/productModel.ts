@@ -14,6 +14,7 @@ export interface IProduct {
   updateDate: Date,
   bestSeller: boolean
   courseAuthor: string,
+  category: string,
 }
 
 export interface IProductCreate extends IProduct, Document { }

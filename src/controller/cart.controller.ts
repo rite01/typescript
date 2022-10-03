@@ -98,14 +98,18 @@ export const removeCart = async (req: RequestB, res: Response): Promise<object> 
         .status(HttpMessageCode.UNPROCESSABLE_ENTITY)
         .json({ error: HttpMessage.NO_CART });
     }
-    const found = data.productId.find((element: string) => element === _id);
+    const found = data.productId.find((i: string) => {
+      const item = i
+        .toString()
+        .replace(/ObjectId\("(.*)"\)/, '$1');
+      console.log('>>>', item, _id);
+      return item === _id;
+    });
     if (!found) {
       return res
         .status(HttpMessageCode.UNPROCESSABLE_ENTITY)
         .json({ error: HttpMessage.NO_DATA_FOUND_FROM_THIS_ID });
     }
-    // const removeItem = data.productId.find((element: string) => element !== _id);
-    // data.productId = (removeItem as unknown as string[]);
 
     const updateData: any = await Cart.findOneAndUpdate(
       { userId },
