@@ -27,7 +27,7 @@ export const productValidation = (req: RequestB, res: Response, next: NextFuncti
     title: joi.string().required().label('Product Title'),
     price: joi.number().required().label('Price'),
     image: joi.any(),
-    updateDate: joi.number().required().label('Update Date'),
+    updateDate: joi.string().required().label('Update Date'),
     courseTitle: joi.string().required().label('Course Title'),
     description: joi.string().required().label('Product description'),
     courseAuther: joi.string().label('Course Auther'),
