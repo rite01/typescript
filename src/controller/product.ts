@@ -292,3 +292,55 @@ export const getProductByTitle = async (req: RequestB, res: Response, _: NextFun
       .json({ error: error.message });
   }
 };
+
+// Payment
+
+// export const paymentOrder = async (_: any, res: any) => {
+//   try {
+//     const instance = new Razorpay({
+//       key_id: process.env.RAZORPAY_KEY_ID,
+//       key_secret: process.env.RAZORPAY_SECRET,
+//     });
+
+//     const options = {
+//       amount: 100, // amount in smallest currency unit
+//       currency: 'INR',
+//       receipt: 'receipt_order_74394',
+//     };
+
+//     const order = await instance.orders.create(options);
+
+//     if (!order) return res.status(500).send('Some error occured');
+
+//     res.json(order);
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// };
+
+// export const paymentSuccess = async (req: any, res: any) => {
+//   try {
+//     // getting the details back from our font-end
+//     const {
+//       orderCreationId,
+//       razorpayPaymentId,
+//       razorpayOrderId,
+//       razorpaySignature,
+//     } = req.body;
+
+//     const shasum: any = crypto.createHmac('sha256', '9MMSS2aMaJiwTAQwJ4eKlEwc');
+
+//     shasum.update(`${orderCreationId}|${razorpayPaymentId}`);
+
+//     const digest = shasum.digest('hex');
+//     if (digest !== razorpaySignature) { return res.status(400).json({ msg: 'Transaction not legit!' }); }
+
+//     res.json({
+//       msg: 'success',
+//       orderId: razorpayOrderId,
+//       paymentId: razorpayPaymentId,
+//     });
+//   } catch (error) {
+//     res.status(500).send(error);
+//   }
+// };

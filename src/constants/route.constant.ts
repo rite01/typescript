@@ -34,6 +34,12 @@ export const Routes = {
     DELETEPRODUCT: '/delete/product/:id',
     TITLELIST: '/product/titleList',
     TITLE: '/createTitle',
+
+  },
+  PAYMENT: {
+    DEFAULT: '/',
+    PAYMENT: '/paymentOrder',
+    PAYMENT_SUCCESS: '/paymentSuccess',
   },
   WISHLIST: {
     DEFAULT: '/',
