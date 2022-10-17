@@ -169,6 +169,7 @@ export const loginHandler = async (req: RequestB, res: Response, _: NextFunction
 export const getUser = async (_: RequestB, res: Response, __: NextFunction): Promise<any> => {
   try {
     const userList = await User.find({});
+    console.log(userList);
     if (userList.length === 0) {
       return res
         .status(HttpMessageCode.BAD_REQUEST)

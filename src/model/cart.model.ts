@@ -7,6 +7,7 @@ export interface ICartModel {
   userId: string,
   active: string,
   modifiedOn: string,
+  total: number,
 }
 
 export interface ICart extends ICartModel, Document {
@@ -16,6 +17,7 @@ export interface ICart extends ICartModel, Document {
 const cartSchema = new Schema(
   {
     productId: [{ type: Schema.Types.ObjectId, ref: 'products' }],
+    total: { type: Number, default: 0 },
     userId: { type: Schema.Types.ObjectId, ref: 'user' },
     active: { type: Boolean, default: true },
     modifiedOn: { type: Date, default: Date.now },

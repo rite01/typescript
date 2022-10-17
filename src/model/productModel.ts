@@ -15,6 +15,7 @@ export interface IProduct {
   bestSeller: boolean
   courseAuthor: string,
   category: string,
+  createdAt: string,
 }
 
 export interface IProductCreate extends IProduct, Document { }
@@ -33,6 +34,10 @@ const productSchema = new mongoose.Schema({
   detail: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'productDetail',
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
   },
 });
 

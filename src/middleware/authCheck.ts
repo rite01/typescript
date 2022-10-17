@@ -3,6 +3,7 @@ import jwt from 'jsonwebtoken';
 import { Types } from 'mongoose';
 import { HttpMessageCode, HttpMessage } from '../constants';
 import {
+  ICart,
   IProductTitle, IUser, IWishList, User,
 } from '../model';
 import { IProductDetail } from '../model/productDetail';
@@ -31,6 +32,9 @@ export interface RequestB {
   headers: {
     authorization?: string
   }
+  obj: Omit<ICart & {
+    _id: Types.ObjectId;
+  }, never>
 }
 
 /**

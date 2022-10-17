@@ -1,5 +1,7 @@
+/* eslint-disable no-restricted-syntax */
 import { Response } from 'express';
 import { RequestB } from 'src/middleware/authCheck';
+import { IProduct } from '../model';
 import { HttpMessage, HttpMessageCode } from '../constants';
 import { Cart } from '../model/cart.model';
 
@@ -72,6 +74,13 @@ export const addCart = async (req: RequestB, res: Response): Promise<object> => 
 export const getCartProduct = async (req: RequestB, res: Response): Promise<object> => {
   try {
     const cartData = await Cart.find({ userId: req.user._id }).populate('productId');
+    for (const obj of cartData) {
+      const test = obj.productId as unknown as IProduct[];
+      console.log(test);
+      for (const hello of test) {
+        console.log(hello.price);
+      }
+    }
     return res.status(HttpMessageCode.OK).json({ message: HttpMessage.GET_CART_PRODUCT, data: cartData });
   } catch (err: any) {
     return res.status(HttpMessageCode.BAD_REQUEST).json({ error: err.message });

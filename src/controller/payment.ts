@@ -30,13 +30,13 @@ export const paymentOrder = async (req: any, res: any) => {
             const paymentDetail: any = new PaymentDetail({
                 orderId: order.id,
                 receiptId: order.receipt,
-                amount: order.amount,
+                amount: order.amount / 100,
                 currency: order.currency,
                 createdAt: order.created_at,
                 status: order.status,
             });
             await paymentDetail.save();
-        return res.json(order);
+            return res.json(order);
         }
     } catch (error) {
         return res.status(500).send(error);
